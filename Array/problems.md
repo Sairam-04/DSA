@@ -1,9 +1,9 @@
-Union of two Sorted Arrays
-
+## Union of two Sorted Arrays
+[https://www.geeksforgeeks.org/problems/union-of-two-sorted-arrays-1587115621/1](https://www.geeksforgeeks.org/problems/union-of-two-sorted-arrays-1587115621/1)
 ```java
 // Brute Force
-Time Complexity : O((m+n) * log(m+n))
-Space Complexity: O(n)
+//Time Complexity : O((m+n) * log(m+n))
+//Space Complexity: O(n)
 class Solution
 {
     public static ArrayList<Integer> findUnion(int arr1[], int arr2[], int n, int m)
@@ -22,8 +22,8 @@ class Solution
 }
 
 //Optimal Solution
-Time Complexity : O(m+n)
-Space Complexity: O(1)
+//Time Complexity : O(m+n)
+//Space Complexity: O(1)
 class Solution
 {
     public static ArrayList<Integer> findUnion(int arr1[], int arr2[], int n, int m)
@@ -57,6 +57,37 @@ class Solution
                 j++;
         }
         return arr;
+    }
+}
+
+```
+
+## Find Missing Number - LC - 268
+[https://leetcode.com/problems/missing-number/description/](https://leetcode.com/problems/missing-number/description/)
+```java
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+class Solution {
+    public int missingNumber(int[] nums) {
+        int i = 0;
+        int n = nums.length;
+        while(i<n){
+            int correctIndex = nums[i];
+            if(nums[i] < n && nums[i] != nums[correctIndex]){
+                int temp = nums[i];
+                nums[i] = nums[correctIndex];
+                nums[correctIndex] = temp;
+            }else{
+                i++;
+            }
+        }
+
+        for(int j=0;j<n;j++){
+            if(nums[j] != j){
+                return j;
+            }
+        }
+        return n;
     }
 }
 
