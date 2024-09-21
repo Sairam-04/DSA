@@ -1,3 +1,4 @@
+# 19 Sept 2024
 ## Union of two Sorted Arrays
 [https://www.geeksforgeeks.org/problems/union-of-two-sorted-arrays-1587115621/1](https://www.geeksforgeeks.org/problems/union-of-two-sorted-arrays-1587115621/1)
 ```java
@@ -91,4 +92,75 @@ class Solution {
     }
 }
 
+```
+
+# 21 Sept 2024
+## Max Consecutive Ones - LC - 485
+[https://leetcode.com/problems/max-consecutive-ones/description/](https://leetcode.com/problems/max-consecutive-ones/description/)
+```java
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int count = 0;
+        int maxCount = 0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i] == 1){
+                count++;
+            }else{
+                count = 0;
+            }
+            maxCount = Math.max(count, maxCount);
+        }
+        return maxCount;
+    }
+}
+```
+
+## Single Number - LC - 136
+[https://leetcode.com/problems/single-number/description/](https://leetcode.com/problems/single-number/description/)
+```java
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+class Solution {
+    public int singleNumber(int[] nums) {
+        int result = 0;
+        for(int i=0;i<nums.length;i++){
+            result^=nums[i];
+        }
+        return result;
+    }
+}
+```
+
+
+## Longest Sub-Array with Sum K
+[https://www.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1](https://www.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1)
+```java
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+class Solution {
+    // Function for finding maximum and value pair
+    public static int lenOfLongSubarr(int A[], int N, int K) {
+        // Complete the function
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int sum = 0;
+        int maxLen = 0;
+        for(int i=0;i<N;i++){
+            sum+=A[i];
+            if(sum == K){
+                maxLen = Math.max(maxLen, i+1);
+            }
+            int rem = sum - K;
+            if(map.containsKey(rem)){
+                int len = i - map.get(rem);
+                maxLen = Math.max(maxLen, len);
+            }
+            if(!map.containsKey(sum)){
+                map.put(sum, i);
+            }
+        }
+        return maxLen;
+    }
+}
 ```
